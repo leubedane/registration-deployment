@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "app.fullname" . }}-backend
+  labels:
+    app: {{ template "app.name" . }}-backend
+    chart: {{ template "app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/mysql-secret.yaml") . | sha256sum }}
+spec:
+  replicas: {{ .Values.backend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "app.name" . }}-backend
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "app.name" . }}-backend
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
+  {{- if .Values.mysql.enabled }}
+          env:
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  key: database-user
+                  name: {{ template "app.name" . }}-mysql
+            - name: MYSQL_PW
+              valueFrom:
+                secretKeyRef:
+                  key: database-password
+                  name: {{ template "app.name" . }}-mysql
+            - name: MYSQL_DB
+              valueFrom:
+                secretKeyRef:
+                  key: database-name
+                  name: {{ template "app.name" . }}-mysql
+            - name: MYSQL_SERVER
+              valueFrom:
+                secretKeyRef:
+                  key: database-host
+                  name: {{ template "app.name" . }}-mysql
+            - name: EMAIL_SERVER
+              valueFrom:
+                secretKeyRef:
+                  key: email-host
+                  name: {{ template "app.name" . }}-email
+            - name: EMAIL_USER
+              valueFrom:
+                secretKeyRef:
+                  key: email-user
+                  name: {{ template "app.name" . }}-email
+            - name: EMAIL_PW
+              valueFrom:
+                secretKeyRef:
+                  key: email-password
+                  name: {{ template "app.name" . }}-email
+{{- end }}
+          ports:
+            - containerPort: {{ .Values.backend.appPort }}
+              protocol: TCP
+          resources:
+{{ toYaml .Values.backend.resources | indent 12 }}
+    {{- with .Values.backend.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.backend.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.backend.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

@@ -1,0 +1,20 @@
+{{- if .Values.mysql.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "app.fullname" . }}-mysql
+  labels:
+    app: {{ template "app.name" . }}-mysql
+    chart: {{ template "app.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.mysql.service.type }}
+  ports:
+    - port: {{ .Values.mysql.service.port }}
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    app: {{ template "app.name" . }}-mysql
+    release: {{ .Release.Name }}
+{{- end }}
