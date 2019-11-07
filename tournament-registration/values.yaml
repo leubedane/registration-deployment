@@ -2,8 +2,6 @@ app:
   backend:
     replicaCount: 1
     appPort: 8080
-    livenessProbePath: api/actuator/health
-    readinessProbePath: api/actuator/health
     image:
       repository: holzleube/tournamentregistration
       tag: master-f948103
