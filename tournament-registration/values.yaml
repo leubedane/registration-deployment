@@ -1,18 +1,57 @@
-app:
-  backend:
-    replicaCount: 1
-    appPort: 8080
-    image:
-      repository: holzleube/tournamentregistration
-      tag: master-f948103
-      pullPolicy: Always
-    service:
-      type: ClusterIP
-      port: 80
-    route:
-      enabled: true
-      path: /
-    resources: {}
-    nodeSelector: {}
-    tolerations: []
-    affinity: {}
+route:
+  enabled: true
+  host: ""
+  defaultDomain: apps.wheel.sh
+
+email:
+  host: v114219.kasserver.com
+  user: m02ada02
+  password: mysecretSecret
+
+mysql:
+  enabled: true
+  databaseName: ttvettlingen20
+  user: mysql
+  password: mysql
+  root-password: rvMTnGRVnruSeAJV
+  image:
+    repository: openshift/mysql
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 5432
+  persistence:
+    enabled: true
+    storageClass: rook-ceph-block
+    size: 1Gi
+  resources: {}
+    # limits:
+    #  cpu: 100m
+    #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+backend:
+  replicaCount: 1
+  appPort: 8080
+  image:
+    repository: holzleube/tournamentregistration
+    tag: master-f948103
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+  route:
+    enabled: true
+    path: /
+  resources: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+

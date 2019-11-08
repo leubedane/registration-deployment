@@ -1,3 +1,0 @@
-server: https://kubernetes.default.svc
-project: tournament-registration
-repoURL: https://github.com/leubedane/registration-deployment.git
