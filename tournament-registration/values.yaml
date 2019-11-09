@@ -15,7 +15,7 @@ mysql:
   password: mysql
   root-password: rvMTnGRVnruSeAJV
   image:
-    repository: openshift/mysql
+    repository: centos/mysql-57-centos7
     tag: latest
     pullPolicy: IfNotPresent
   service:
@@ -41,7 +41,7 @@ backend:
   appPort: 8080
   image:
     repository: holzleube/tournamentregistration
-    tag: master-f948103
+    tag: latest
     pullPolicy: Always
   service:
     type: ClusterIP
