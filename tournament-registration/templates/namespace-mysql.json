@@ -2,14 +2,14 @@
   "kind": "SealedSecret",
   "apiVersion": "bitnami.com/v1alpha1",
   "metadata": {
-    "name": "mysql-secret",
+    "name": "tournament-registration-mysql",
     "namespace": "tournamentregistration",
     "creationTimestamp": null
   },
   "spec": {
     "template": {
       "metadata": {
-        "name": "mysql-secret",
+        "name": "tournament-registration-mysql",
         "namespace": "tournamentregistration",
         "creationTimestamp": null
       }
