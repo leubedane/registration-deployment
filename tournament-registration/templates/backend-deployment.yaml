@@ -51,17 +51,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: email-host
-                  name: {{ template "app.name" . }}-email
+                  name: {{ template "app.name" . }}-mysql
             - name: EMAIL_USER
               valueFrom:
                 secretKeyRef:
                   key: email-user
-                  name: {{ template "app.name" . }}-email
+                  name: {{ template "app.name" . }}-mysql
             - name: EMAIL_PW
               valueFrom:
                 secretKeyRef:
                   key: email-password
-                  name: {{ template "app.name" . }}-email
+                  name: {{ template "app.name" . }}-mysql
 {{- end }}
           ports:
             - containerPort: {{ .Values.backend.appPort }}
