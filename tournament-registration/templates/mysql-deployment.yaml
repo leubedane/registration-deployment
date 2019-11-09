@@ -69,13 +69,8 @@ spec:
             timeoutSeconds: 10
           readinessProbe:
             exec:
-              command:
-                - /bin/sh
-                  - '-i'
-                  - '-c'
-                  - >-
-                  MYSQL_PWD="$MYSQL_PASSWORD" mysql -h 127.0.0.1 -u $MYSQL_USER
-                  -D $MYSQL_DATABASE -e 'SELECT 1'
+              exec:
+                command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
           volumeMounts:
             - mountPath: /var/lib/mysql/data
               name: mysql-data
