@@ -3,17 +3,8 @@ route:
   host: ""
   defaultDomain: apps.wheel.sh
 
-email:
-  host: v114219.kasserver.com
-  user: m02ada02
-  password: mysecretSecret
-
 mysql:
   enabled: true
-  databaseName: ttvettlingen20
-  user: mysql
-  password: mysql
-  root-password: rvMTnGRVnruSeAJV
   image:
     repository: centos/mysql-57-centos7
     tag: latest
