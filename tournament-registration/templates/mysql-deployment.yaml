@@ -69,8 +69,7 @@ spec:
             timeoutSeconds: 10
           readinessProbe:
             exec:
-              exec:
-                command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
+              command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
           volumeMounts:
             - mountPath: /var/lib/mysql/data
               name: mysql-data
