@@ -8,7 +8,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
   annotations:
-    checksum/config: {{ include (print $.Template.BasePath "/namespace-mysql.json") . | sha256sum }}
+    checksum/config: {{ include (print $.Template.BasePath "/tournament-registration-mysql-sealed-secret.json") . | sha256sum }}
 spec:
   replicas: 1
   selector:

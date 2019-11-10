@@ -1,7 +1,6 @@
 route:
   enabled: true
-  host: ""
-  defaultDomain: apps.wheel.sh
+  host: "ttt.wheel.sh"
 
 mysql:
   enabled: true

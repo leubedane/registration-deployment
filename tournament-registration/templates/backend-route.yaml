@@ -1,6 +1,5 @@
 {{- if .Values.route.enabled -}}
 {{- $fullName := include "app.fullname" . -}}
-{{- $defaultUrl := printf "%s.%s" .Release.Name $.Values.route.defaultDomain -}}
 {{- $routePath := .Values.backend.route.path -}}
 {{- $host := .Values.route.host -}}
 apiVersion: route.openshift.io/v1
@@ -13,7 +12,7 @@ metadata:
     heritage: {{ .Release.Service }}
   name: {{ $fullName }}-backend
 spec:
-  host: {{ default $defaultUrl $host }}
+  host: {{ .Values.route.hsot }}
   path: {{ $routePath }}
   tls:
     insecureEdgeTerminationPolicy: Redirect
