@@ -11,7 +11,7 @@ mysql:
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
-    port: 5432
+    port: 3306
   persistence:
     enabled: true
     storageClass: rook-ceph-block
