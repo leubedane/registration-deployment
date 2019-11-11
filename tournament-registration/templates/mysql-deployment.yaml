@@ -15,6 +15,8 @@ spec:
     matchLabels:
       app: {{ template "app.name" . }}-mysql
       release: {{ .Release.Name }}
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -55,21 +57,30 @@ spec:
                   key: database-root-password
                   name: {{ template "app.name" . }}-mysql
           ports:
-            - containerPort: 5432
+            - containerPort: 3306
               protocol: TCP
           livenessProbe:
-            exec:
-              command:
-                - /usr/libexec/check-container
-                - '--live'
             failureThreshold: 3
-            initialDelaySeconds: 120
+            initialDelaySeconds: 30
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 10
+            tcpSocket:
+              port: 3306
+            timeoutSeconds: 1
           readinessProbe:
             exec:
-              command: ["mysql", "-h", "127.0.0.1", "-e", "SELECT 1"]
+              command:
+                - /bin/sh
+                - '-i'
+                - '-c'
+                - >-
+                  MYSQL_PWD="$MYSQL_PASSWORD" mysql -h 127.0.0.1 -u $MYSQL_USER
+                  -D $MYSQL_DATABASE -e 'SELECT 1'
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
           volumeMounts:
             - mountPath: /var/lib/mysql/data
               name: mysql-data
