@@ -5,6 +5,10 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
+{{- if .Values.route.letsencrypt }}
+  annotations:
+    kubernetes.io/tls-acme: "true"
+{{- end }}
   labels:
     app: {{ template "app.name" . }}-backend
     chart: {{ template "app.chart" . }}

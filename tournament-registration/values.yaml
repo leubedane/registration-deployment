@@ -1,6 +1,7 @@
 route:
   enabled: true
   host: "ttt.wheel.sh"
+  letsencrypt: true
 
 mysql:
   enabled: true
