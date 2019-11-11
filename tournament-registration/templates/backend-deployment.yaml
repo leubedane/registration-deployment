@@ -43,7 +43,7 @@ spec:
                   key: database-name
                   name: {{ template "app.name" . }}-mysql
             - name: MYSQL_SERVER
-              value: "tournamentregistration-tournament-registration-mysql"
+              value: "{{ template "app.name" . }}-mysql"
             - name: EMAIL_SERVER
               valueFrom:
                 secretKeyRef:
