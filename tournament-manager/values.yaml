@@ -7,7 +7,7 @@ mysql:
   enabled: true
   image:
     repository: holzleube/mysql-docker-image
-    tag: 2.0
+    tag: "2.0"
     pullPolicy: IfNotPresent
   service:
     type: ClusterIP
@@ -32,7 +32,7 @@ backend:
   appPort: 9000
   image:
     repository: holzleube/turniermanager
-    tag: 1.0
+    tag: "1.0"
     pullPolicy: Always
   service:
     type: ClusterIP
@@ -50,7 +50,7 @@ frontend:
   appPort: 8080
   image:
     repository: holzleube/turniermanager-client
-    tag: 1.2
+    tag: "1.2"
     pullPolicy: Always
   service:
     type: ClusterIP
