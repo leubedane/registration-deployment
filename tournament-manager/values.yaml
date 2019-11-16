@@ -1,6 +1,6 @@
 route:
   enabled: true
-  host: "tt-manager.wheel.sh"
+  host: "tt-manager.apps.baloise.dev"
   letsencrypt: true
 
 mysql:
