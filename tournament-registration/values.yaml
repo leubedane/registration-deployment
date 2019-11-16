@@ -32,7 +32,7 @@ backend:
   appPort: 8080
   image:
     repository: holzleube/tournamentregistration
-    tag: latest
+    tag: master-3ee4585
     pullPolicy: Always
   service:
     type: ClusterIP
