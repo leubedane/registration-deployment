@@ -32,7 +32,7 @@ backend:
   appPort: 8080
   image:
     repository: holzleube/tournamentregistration
-    tag: master-3ee4585
+    tag: latest
     pullPolicy: Always
   service:
     type: ClusterIP
@@ -40,6 +40,8 @@ backend:
   route:
     enabled: true
     path: /
+  livenessProbePath: ttvettlingen/health
+  readinessProbePath: ttvettlingen/health
   resources: {}
   nodeSelector: {}
   tolerations: []
