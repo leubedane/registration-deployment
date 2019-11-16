@@ -44,6 +44,8 @@ spec:
                   name: {{ template "app.name" . }}-mysql
             - name: MYSQL_SERVER
               value: "{{ template "app.name" . }}-mysql"
+            - name: MYSQL_PORT
+              value: {{ .Values.mysql.service.port }}
 {{- end }}
           ports:
             - containerPort: {{ .Values.backend.appPort }}
