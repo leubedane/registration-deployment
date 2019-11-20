@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: {{ template "app.name" . }}-mysql
   labels:
     app: {{ template "app.name" . }}-mysql
     chart: {{ template "app.chart" . }}
