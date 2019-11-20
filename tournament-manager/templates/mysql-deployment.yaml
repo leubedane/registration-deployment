@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mysql
   labels:
-    app: mysql
+    app: {{ template "app.name" . }}-mysql
     chart: {{ template "app.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
