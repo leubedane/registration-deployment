@@ -15,7 +15,7 @@ mysql:
   persistence:
     enabled: true
     storageClass: rook-ceph-block
-    size: 1.0Gi
+    size: 1.5Gi
   resources: {}
     # limits:
     #  cpu: 100m
