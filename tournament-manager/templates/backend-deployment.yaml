@@ -43,7 +43,7 @@ spec:
                   key: database-name
                   name: {{ template "app.name" . }}-mysql
             - name: MYSQL_SERVER
-              value: "mysql"
+              value: {{ template "app.name" . }}-mysql
             - name: MYSQL_PORT
               value: "{{ .Values.mysql.service.port }}"
 {{- end }}
