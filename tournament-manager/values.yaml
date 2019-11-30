@@ -32,7 +32,7 @@ backend:
   appPort: 9443
   image:
     repository: holzleube/turniermanager
-    tag: "1.5.1"
+    tag: "1.6"
     pullPolicy: Always
   service:
     type: ClusterIP
