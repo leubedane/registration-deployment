@@ -32,7 +32,7 @@ backend:
   appPort: 9000
   image:
     repository: holzleube/turniermanager
-    tag: "1.6.1"
+    tag: "1.7"
     pullPolicy: Always
   service:
     type: ClusterIP
@@ -50,7 +50,7 @@ frontend:
   appPort: 8080
   image:
     repository: holzleube/turniermanager-client
-    tag: "1.5.4"
+    tag: "1.7"
     pullPolicy: Always
   service:
     type: ClusterIP
