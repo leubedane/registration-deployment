@@ -17,12 +17,7 @@ mysql:
     storageClass: rook-ceph-block
     size: 1.5Gi
   resources: {}
-    # limits:
-    #  cpu: 100m
-    #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+ 
   nodeSelector: {}
   tolerations: []
   affinity: {}
@@ -42,7 +37,13 @@ backend:
     path: /
   livenessProbePath: ttvettlingen/health
   readinessProbePath: ttvettlingen/health
-  resources: {}
+  resources:
+    limits:
+     cpu: 500m
+     memory: 512Mi
+  requests:
+   cpu: 100m
+   memory: 256Mi
   nodeSelector: {}
   tolerations: []
   affinity: {}
