@@ -26,7 +26,7 @@ backend:
   appPort: 9000
   image:
     repository: holzleube/turniermanager
-    tag: "1.7.1"
+    tag: "1.8"
     pullPolicy: Always
   service:
     type: ClusterIP
@@ -36,8 +36,8 @@ backend:
     path: /api
   resources:
     limits:
-     cpu: 500m
-     memory: 512Mi
+     cpu: 2
+     memory: 1Gi
     requests:
      cpu: 100m
      memory: 256Mi
@@ -50,7 +50,7 @@ frontend:
   appPort: 8080
   image:
     repository: holzleube/turniermanager-client
-    tag: "1.7"
+    tag: "1.8"
     pullPolicy: Always
   service:
     type: ClusterIP
