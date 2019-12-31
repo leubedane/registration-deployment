@@ -50,7 +50,7 @@ frontend:
   appPort: 8080
   image:
     repository: holzleube/turniermanager-client
-    tag: "2.3"
+    tag: "2.4"
     pullPolicy: Always
   service:
     type: ClusterIP
