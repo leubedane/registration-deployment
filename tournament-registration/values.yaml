@@ -27,7 +27,7 @@ backend:
   appPort: 8080
   image:
     repository: holzleube/tournamentregistration
-    tag: "master-3917baf"
+    tag: "ohne-3353ab5"
     pullPolicy: Always
   service:
     type: ClusterIP
