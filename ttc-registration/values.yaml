@@ -1,0 +1,51 @@
+route:
+  enabled: true
+  host: "ttc.wheel.sh"
+  letsencrypt: true
+
+mysql:
+  enabled: true
+  image:
+    repository: centos/mysql-57-centos7
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 3306
+  persistence:
+    enabled: true
+    storageClass: rook-ceph-block
+    size: 1.5Gi
+  resources: {}
+ 
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+backend:
+  replicaCount: 1
+  appPort: 8080
+  image:
+    repository: holzleube/tournamentregistration
+    tag: "ttc-1.2"
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 80
+  route:
+    enabled: true
+    path: /
+  livenessProbePath: ttcborussia/health
+  readinessProbePath: ttcborussia/health
+  resources:
+    limits:
+     cpu: 2
+     memory: 512Mi
+    requests:
+     cpu: 100m
+     memory: 256Mi
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+
